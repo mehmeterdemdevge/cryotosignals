@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-const { PORT } = require('./util/config')
+const { http_port} = require('./util/config')
 const { connectToDatabase } = require('./util/db')
 
 const signalsRouter = require('./controllers/signals')
@@ -16,7 +16,7 @@ app.use('/api/signals', signalsRouter)
 const start = async () => {
   await connectToDatabase()
   app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+    console.log(`Server running on port ${http_port}`)
   })
 }
 
