@@ -7,7 +7,7 @@ const { connectToDatabase } = require('./util/db')
 const signalsRouter = require('./controllers/signals')
 
 app.use(express.json())
-app.use('/', ()=>{
+app.use('/', (req,res)=>{
   res.send('hello')
 })
 
