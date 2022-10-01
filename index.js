@@ -9,10 +9,11 @@ const signalsRouter = require('./controllers/signals')
 app.use(express.json())
 
 
-app.use('/api/signals', signalsRouter);
+
 app.use('/', (req,res)=>{
   res.send('iyi şanslar')
 })
+app.use('/api/signals', signalsRouter);
 
 const start = async () => {
   await connectToDatabase()
