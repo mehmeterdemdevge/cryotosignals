@@ -8,9 +8,13 @@ const signalsRouter = require('./controllers/signals')
 
 app.use(express.json())
 
+
 app.use('/api/signals', signalsRouter);
 app.use('/api', (req,res)=>{
   res.send('iyi şanslar api')
+});
+app.use('/', (req,res)=>{
+  res.send('good luck')
 })
 
 const start = async () => {
