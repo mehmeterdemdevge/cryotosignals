@@ -11,7 +11,7 @@ app.use(express.json())
 
 app.use('/api/signals', signalsRouter);
 app.use('/api', (req,res)=>{
-  res.send('iyi şanslar api')
+  res.send('iyi şanslar !')
 });
 app.use('/', (req,res)=>{
   res.send('good luck')
