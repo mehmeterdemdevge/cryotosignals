@@ -4,7 +4,7 @@ const { Signal } = require('../models')
 
 router.get('/', async (req, res) => {
   const signals = await Signal.findAll({ order: [['date', 'DESC']]})
-  res.json(signals)
+  res.json({status:"ok",signals:signals})
 })
 
 router.post('/', async (req, res) => {
@@ -39,7 +39,7 @@ router.put('/:id', async (req, res) => {
   if (signal) {
     //note.important = req.body.important
     //await note.save()
-    res.json(signal)
+    res.json({status:"ok",signal:signal})
   } else {
     res.status(404).end()
   }
