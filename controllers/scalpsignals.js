@@ -15,9 +15,9 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+  const body = req.body;
   if (
     !body.assetType||
-    !body.premium ||
     !body.entryPoint ||
     !body.stopLoss|
     !body.takeProfit
@@ -26,6 +26,11 @@ router.post('/', async (req, res) => {
   ) {
     return res.status(400).send({msg:"Bad request someting missing"});
   }
+  else if(!typeof body.premium==="boolean"){
+    console.log(typeof body.premium)
+    return res.status(400).send({msg:"premium must be true or false"})
+  }
+  
   let obj = {...req.body, date:Date.now()}
   try {
     const signal = await Scalpsignal.create(obj)
