@@ -3,11 +3,29 @@ const router = require('express').Router()
 const { Scalpsignal } = require('../models')
 
 router.get('/', async (req, res) => {
-  const signals = await Scalpsignal.findAll({ order: [['date', 'DESC']]})
+  const {premium} = req.query;
+  const signals = await Scalpsignal.findAll({ 
+    limit: 25,
+    where:{
+      premium:premium
+    },
+
+    order: [['date', 'DESC']]})
   res.json({status:"ok",signals:signals})
 })
 
 router.post('/', async (req, res) => {
+  if (
+    !body.assetType||
+    !body.premium ||
+    !body.entryPoint ||
+    !body.stopLoss|
+    !body.takeProfit
+    
+
+  ) {
+    return res.status(400).send({msg:"Bad request someting missing"});
+  }
   let obj = {...req.body, date:Date.now()}
   try {
     const signal = await Scalpsignal.create(obj)
