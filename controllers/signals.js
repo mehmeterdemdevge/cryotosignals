@@ -4,6 +4,9 @@ const { Signal } = require('../models')
 
 router.get('/', async (req, res) => {
   const {premium} = req.query;
+  if(!premium){
+    res.status(400).send({msg:"premium paramater is required as true or false"})
+  }
   const signals = await Signal.findAll({ 
     limit: 25,
     where:{
@@ -15,6 +18,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const body = req.body;
+  
   if (
     !body.assetType||
     !body.entryPoint ||
