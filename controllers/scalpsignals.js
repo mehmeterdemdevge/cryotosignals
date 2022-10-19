@@ -4,6 +4,10 @@ const { Scalpsignal } = require('../models')
 
 router.get('/', async (req, res) => {
   const {premium} = req.query;
+  
+  if(!premium){
+    res.status(400).send({msg:"premium paramater is required as true or false"})
+  }
   const signals = await Scalpsignal.findAll({ 
     limit: 25,
     where:{
